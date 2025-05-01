@@ -36,8 +36,8 @@ bindsym $SUPER+CONTROL+F11 exec i3-msg exit
 
 
 
-gaps inner 15
-gaps outer 0
+gaps inner 0
+gaps outer 35
 bindsym $SUPER+b gaps inner all toggle 15
 bindsym $SUPER+Shift+b gaps inner all plus 5
 bindsym $SUPER+Shift+m gaps inner all minus 5
@@ -251,7 +251,7 @@ bar {
 exec_always --no-startup-id setxkbmap -layout us -variant dvorak
 
 # exec --no-startup-id ~/i3-animated-background/scripts/loop_pngs.sh ~/i3-animated-background/scripts/samus-aran 0.01
-exec --no-startup-id feh --bg-center ~/Pictures/moka/moka-12.png
+exec --no-startup-id feh --bg-center ~/Pictures/moka/moka-11.png
 # exec --no-startup-id xsetroot -solid "#ffffff"
 # set $WALLPAPER_IMAGE /home/jakqxs/Pictures/moka/moka-12.png
 # set $IMAGE /home/jakqxs/Pictures/moka/moka-8.png
