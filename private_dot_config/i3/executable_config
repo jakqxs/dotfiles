@@ -1,0 +1,262 @@
+
+
+
+
+# --- i3wm START --------------
+default_orientation auto
+workspace_layout default
+title_align center
+default_border normal
+default_floating_border normal
+hide_edge_borders smart
+focus_follows_mouse no
+mouse_warping none
+popup_during_fullscreen smart
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 2000 ms
+focus_on_window_activation smart
+show_marks yes
+tiling_drag titlebar
+
+font pango:solid mono 8
+
+
+set $SUPER Mod4
+
+
+
+
+
+# reload the configuration file
+bindsym $SUPER+Shift+r reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $SUPER+Ctrl+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $SUPER+CONTROL+F11 exec i3-msg exit
+
+
+
+gaps inner 15
+gaps outer 0
+bindsym $SUPER+b gaps inner all toggle 15
+bindsym $SUPER+Shift+b gaps inner all plus 5
+bindsym $SUPER+Shift+m gaps inner all minus 5
+
+# --- i3wm END ----------------------------
+
+# --- StartUp Applications START --------------------
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id nm-applet
+# --- StartUp Applications END
+
+
+
+
+
+
+
+
+
+
+
+# --- WINDOWS START -
+# kill focused window
+bindsym $SUPER+Shift+c kill
+bindsym $SUPER+i split horizontal
+bindsym $SUPER+d split vertical
+bindsym $SUPER+f fullscreen toggle
+# change layout (stacked, tabbed, toggle split)
+bindsym $SUPER+grave layout toggle split
+bindsym $SUPER+Shift+grave layout toggle tabbed stacking
+# focus the parent container
+bindsym $SUPER+comma focus parent
+# focus the child container
+bindsym $SUPER+period focus child
+
+
+# change focus
+bindsym $SUPER+t focus left
+bindsym $SUPER+n focus right
+bindsym $SUPER+o focus down
+bindsym $SUPER+e focus up
+# Alternative shortcuts
+bindsym $SUPER+Left focus left
+bindsym $SUPER+Right focus right
+bindsym $SUPER+Down focus down
+bindsym $SUPER+Up focus up
+
+# move focused window
+bindsym $SUPER+Shift+t move left
+bindsym $SUPER+Shift+n move right
+bindsym $SUPER+Shift+o move down
+bindsym $SUPER+Shift+e move up
+# Alternative shortcuts
+bindsym $SUPER+Shift+Left move left
+bindsym $SUPER+Shift+Right move right
+bindsym $SUPER+Shift+Down move down
+bindsym $SUPER+Shift+Up move up
+
+
+# resize window
+bindsym $SUPER+Control+t resize shrink width 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+t resize shrink width 1 px or 1 ppt
+bindsym $SUPER+Control+n resize grow width 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+n resize grow width 1 px or 1 ppt
+bindsym $SUPER+Control+o resize shrink height 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+o resize shrink height 1 px or 1 ppt
+bindsym $SUPER+Control+e resize grow height 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+e resize grow height 1 px or 1 ppt
+bindsym $SUPER+Control+Left resize shrink width 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+Left resize shrink width 1 px or 1 ppt
+bindsym $SUPER+Control+Right resize grow width 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+Right resize grow width 1 px or 1 ppt
+bindsym $SUPER+Control+Down resize shrink height 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+Down resize shrink height 1 px or 1 ppt
+bindsym $SUPER+Control+Up resize grow height 10 px or 10 ppt
+bindsym $SUPER+Control+Shift+Up resize grow height 1 px or 1 ppt
+
+
+# --- WINDOWS FLOATING START ---------------------------------------
+floating_modifier $SUPER
+floating_minimum_size 50 x 50
+floating_maximum_size -1 x -1
+
+bindsym --whole-window --exclude-titlebar $SUPER+button1 floating toggle
+bindsym --whole-window --exclude-titlebar $SUPER+button2 kill
+# toggle tiling / floating
+bindsym $SUPER+Shift+f floating toggle
+# change focus between tiling / floating windows
+bindsym $SUPER+semicolon focus mode_toggle
+# --- WINDOWS FLOATING END -----------
+# --- WINDOWS END ------------
+
+
+
+
+
+
+# --- WORKSPACES START --------
+bindsym $SUPER+h workspace next
+bindsym $SUPER+u workspace prev
+bindsym $SUPER+Shift+h workspace back_and_forth
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $workspace_1 "1"
+set $workspace_2 "2"
+set $workspace_3 "3"
+set $workspace_4 "4"
+set $workspace_5 "5"
+set $workspace_6 "6"
+set $workspace_7 "7"
+set $workspace_8 "8"
+set $workspace_9 "9"
+set $workspace_10 "10"
+
+# switch to workspace
+bindsym $SUPER+1 workspace number $workspace_1
+bindsym $SUPER+2 workspace number $workspace_2
+bindsym $SUPER+3 workspace number $workspace_3
+bindsym $SUPER+4 workspace number $workspace_4
+bindsym $SUPER+5 workspace number $workspace_5
+bindsym $SUPER+6 workspace number $workspace_6
+bindsym $SUPER+7 workspace number $workspace_7
+bindsym $SUPER+8 workspace number $workspace_8
+bindsym $SUPER+9 workspace number $workspace_9
+bindsym $SUPER+0 workspace number $workspace_10
+
+# move focused container to workspace
+bindsym $SUPER+Shift+1 move container to workspace number $workspace_1
+bindsym $SUPER+Shift+2 move container to workspace number $workspace_2
+bindsym $SUPER+Shift+3 move container to workspace number $workspace_3
+bindsym $SUPER+Shift+4 move container to workspace number $workspace_4
+bindsym $SUPER+Shift+5 move container to workspace number $workspace_5
+bindsym $SUPER+Shift+6 move container to workspace number $workspace_6
+bindsym $SUPER+Shift+7 move container to workspace number $workspace_7
+bindsym $SUPER+Shift+8 move container to workspace number $workspace_8
+bindsym $SUPER+Shift+9 move container to workspace number $workspace_9
+bindsym $SUPER+Shift+0 move container to workspace number $workspace_10
+# --- WORKSPACES END --------------------------------------------------
+
+
+
+
+# --- Apps shortcuts
+# start a terminal
+bindsym Mod1+t exec alacritty
+bindsym Mod1+Shift+t exec i3-sensible-terminal
+
+# start dmenu (a program launcher)
+bindsym Mod1+r exec --no-startup-id dmenu_run
+# -------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+# # TODO: not full. see documentation 4.21. Changing colors
+# # class                 border  backgr. text    indicator child_border
+# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+# client.urgent           #2f343a #900000 #ffffff #900000   #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# client.background       #ffffff
+
+bar {
+        status_command i3status -c ~/.config/i3/i3status.conf
+
+        font pango:solid mono 12
+
+	position top
+	# padding 2px 0
+
+	tray_output primary
+	tray_padding 5
+
+	mode dock
+        hidden_state show
+        modifier none
+
+	separator_symbol "/"
+
+	workspace_buttons yes
+	workspace_min_width 50
+	strip_workspace_numbers no
+	strip_workspace_name no
+	binding_mode_indicator yes
+
+        # TODO: not full. see documentation 5.17. Colors
+	i3bar_command i3bar --transparency
+	colors {
+	        background #000000
+		statusline #ffffff
+                separator #666666
+
+                focused_workspace  #4c7899 #285577 #ffffff
+                active_workspace   #333333 #5f676a #ffffff
+                inactive_workspace #333333 #222222 #888888
+                urgent_workspace   #2f343a #900000 #ffffff
+                binding_mode       #2f343a #900000 #ffffff
+	}
+}
+
+# TODO: delete these lines
+exec_always --no-startup-id setxkbmap -layout us -variant dvorak
+
+# exec --no-startup-id ~/i3-animated-background/scripts/loop_pngs.sh ~/i3-animated-background/scripts/samus-aran 0.01
+exec --no-startup-id feh --bg-center ~/Pictures/moka/moka-12.png
+# exec --no-startup-id xsetroot -solid "#ffffff"
+# set $WALLPAPER_IMAGE /home/jakqxs/Pictures/moka/moka-12.png
+# set $IMAGE /home/jakqxs/Pictures/moka/moka-8.png
+# bindsym $SUPER+CONTROL+l exec i3lock --color=000000 --no-unlock-indicator --image=$IMAGE --ignore-empty-password
+# exec --no-startup-id feh --bg-center $WALLPAPER_IMAGE
+
+# exec --no-startup-id conky
+
