@@ -83,11 +83,12 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=modarin256-defbg-thin
+skin=julia256
+fish_directory_timeout=900
 
 [Layout]
 output_lines=0
-left_panel_size=105
+left_panel_size=95
 top_panel_size=26
 message_visible=false
 keybar_visible=true
@@ -139,7 +140,7 @@ select_flags=6
 simple_swap=false
 
 [Panelize]
-Modified git files=git ls-files --modified
 Find rejects after patching=find . -name \\*.rej -print
-Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
+Modified git files=git ls-files --modified
 Find *.orig after patching=find . -name \\*.orig -print
+Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm /011 \\) -o \\( -perm -02000 -a -perm /01 \\) \\) -print
