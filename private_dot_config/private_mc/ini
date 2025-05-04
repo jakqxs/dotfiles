@@ -83,7 +83,7 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=gray-green-purple256
+skin=modarcon16-defbg-thin
 fish_directory_timeout=900
 
 [Layout]
@@ -91,12 +91,12 @@ output_lines=0
 left_panel_size=105
 top_panel_size=27
 message_visible=false
-keybar_visible=false
+keybar_visible=true
 xterm_title=true
 command_prompt=false
-menubar_visible=false
-free_space=false
-horizontal_split=true
+menubar_visible=true
+free_space=true
+horizontal_split=false
 vertical_equal=true
 horizontal_equal=true
 
