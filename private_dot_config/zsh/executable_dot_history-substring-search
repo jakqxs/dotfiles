@@ -1,0 +1,11 @@
+# TODO: source on condition (if -d then source)
+source $ZPLUGDIR/history-substring-search/zsh-history-substring-search.zsh
+bindkey -M emacs '^[^P' history-substring-search-up
+bindkey -M emacs '^[^N' history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green,bold'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,bold'
+HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
+HISTORY_SUBSTRING_SEARCH_FUZZY=''
+HISTORY_SUBSTRING_SEARCH_PREFIXED=''
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=''
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT='10'

@@ -88,7 +88,7 @@ fish_directory_timeout=900
 
 [Layout]
 output_lines=0
-left_panel_size=105
+left_panel_size=104
 top_panel_size=27
 message_visible=false
 keybar_visible=true

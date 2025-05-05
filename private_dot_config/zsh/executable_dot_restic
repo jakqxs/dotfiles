@@ -1,0 +1,18 @@
+alias restic='restic --verbose --verbose'
+
+export JAKQXS_BACKUP="$HOME/.backup"
+
+export RESTIC_REPOSITORY="$JAKQXS_BACKUP"
+# export RESTIC_REPOSITORY_FILE=''
+
+# TODO: create strong password or change to password file
+export RESTIC_PASSWORD='.paka;o.paka;U'
+# export RESTIC_PASSWORD_FILE=''
+# export RESTIC_PASSWORD_COMMAND=''
+
+export RESTIC_COMPRESSION='max'
+# export GOMAXPROCS=''
+
+export RESTIC_CACHE_DIR="$XDG_CACHE_HOME"
+# export RESTIC_KEY_HINT=''
+# export RESTIC_PROGRESS_FPS=''

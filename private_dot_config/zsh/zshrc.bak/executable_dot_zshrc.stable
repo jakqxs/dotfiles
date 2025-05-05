@@ -1,0 +1,371 @@
+POCKET="$HOME/.pocket"
+alias pckt="$POCKET"
+
+# restic config start
+alias restic='restic --verbose --verbose'
+
+export JAKQXS_BACKUP="$HOME/.backup"
+
+export RESTIC_REPOSITORY="$JAKQXS_BACKUP"
+# export RESTIC_REPOSITORY_FILE=''
+
+# TODO: create strong password or change to password file
+export RESTIC_PASSWORD='.paka;o.paka;U'
+# export RESTIC_PASSWORD_FILE=''
+# export RESTIC_PASSWORD_COMMAND=''
+
+export RESTIC_COMPRESSION='max'
+# export GOMAXPROCS=''
+
+export RESTIC_CACHE_DIR="$XDG_CACHE_HOME"
+# export RESTIC_KEY_HINT=''
+# export RESTIC_PROGRESS_FPS=''
+# restic config end
+
+# pass config start
+# PASSWORD_STORE_DIR="$POCKET/password"
+# PASSWORD_STORE_EXTENSIONS_DIR="$PASSWORD_STORE_EXTENSIONS_DIR/.extension"
+PASSWORD_STORE_ENABLE_EXTENSIONS='true'
+PASSWORD_STORE_CLIP_TIME=15
+PASSWORD_STORE_UMASK=077
+export PASSWORD_STORE_CHARACTER_SET='[:graph:]'
+export PASSWORD_STORE_CHARACTER_SET_NO_SYMBOLS='[:alnum:]'
+export PASSWORD_STORE_GENERATED_LENGTH=60
+# pass config end
+
+# navi config start
+NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
+export NAVI_PATH="$XDG_DATA_HOME/navi/cheats"
+# export NAVI_FZF_OVERRIDES='--height 3'
+# export NAVI_FZF_OVERRIDES_VAR='--height 3'
+# navi config end
+
+# TODO: implement command not found handler
+# source /etc/zsh_command_not_found
+function command_not_found_handler() {echo "THERE is NO Such command $1"}
+
+export TMPDIR='/tmp'
+
+alias home="cd $HOME"
+alias h='home'
+
+alias tar='tar --preserve-permissions --sort=name --verbose'
+alias gzip='gzip --name --best --synchronous --verbose'
+alias bzip2='bzip2 --best --verbose'
+alias xz='xz -9 --verbose'
+alias zip='zip -9 --temp-path /tmp --verbose'
+
+alias ff='find . -type f -iname'
+alias fd='find . -type d -iname'
+# -------------------------------------------------------------------------
+
+typeset -U path
+path=(~/.local/bin $path)
+fpath=(~/.local/share/zsh/function ~/.local/share/zsh/function/completion ~/.local/share/zsh/function/prompt $fpath)
+
+bindkey -e
+
+umask 003
+
+# Environmental variables start
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_DIRS=''
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS=''
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+XDG_DESKTOP_DIR="$HOME/Desktop"
+XDG_DOWNLOAD_DIR="$HOME/Downloads"
+XDG_TEMPLATES_DIR="$HOME/Templates"
+XDG_PUBLICSHARE_DIR="$HOME/Public"
+XDG_DOCUMENTS_DIR="$HOME/Documents"
+XDG_MUSIC_DIR="$HOME/Music"
+XDG_PICTURES_DIR="$HOME/Pictures"
+XDG_VIDEOS_DIR="$HOME/Videos"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# TODO: adjust WORDCHARS variable
+# old (stable)
+# export WORDCHARS='*?~&;!#%^()[]<>'
+# new (unstable)
+export WORDCHARS=')]>'
+
+HISTFILE="$XDG_STATE_HOME/zsh/histfile"
+HISTSIZE=100000
+SAVEHIST=100000
+
+export EDITOR="$(which nvim)"
+export VISUAL="$EDITOR"
+export SUDO_EDITOR="$EDITOR"
+export FCEDIT="$EDITOR"
+export PAGER="$(which less)"
+export BROWSER="$(which firefox)"
+export MAIL="/var/spool/mail/$LOGNAME"
+export MAILPATH="$MAIL"
+export MAILCHECK='60'
+# Environmental variables end
+
+# Aliases start
+alias zshrc="$EDITOR $ZDOTDIR/.zshrc"
+alias zrc="$EDITOR $ZDOTDIR/.zshrc"
+alias z.="source $ZDOTDIR/.zshrc"
+alias sosh="source $ZDOTDIR/.zshrc"
+alias vrc="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"
+
+alias v='nvim'
+
+export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:';
+alias ls='ls --color=auto --classify --ignore-backups'
+alias l='ls --group-directories-first'
+alias la='ls --group-directories-first --almost-all'
+alias l1="ls --group-directories-first -1"
+alias lr='ls --group-directories-first --recursive'
+alias lar='ls --group-directories-first --recursive --almost-all'
+alias lS='ls -1 -S --size --human-readable'
+alias lX='ls -X --group-directories-first'
+alias laX='ls -X --group-directories-first --almost-all'
+
+alias ll='ls -l --group-directories-first --human-readable --time-style=long-iso'
+alias lla='ls -l --almost-all --group-directories-first --human-readable --time-style=long-iso'
+alias llr='ls -l --recursive --group-directories-first --human-readable --time-style=long-iso'
+alias llar='ls -l --almost-all --recursive --group-directories-first --human-readable --time-style=long-iso'
+alias lD='ls -l --directory --human-readable --time-style=long-iso'
+alias lC='ls -lt --human-readable --time-style=long-iso'
+alias lT='ls -l -t --time=atime --human-readable --time-style=long-iso'
+alias llX='ls -l -X --group-directories-first --human-readable --time-style=long-iso'
+alias llaX='ls -l -X --group-directories-first --human-readable --time-style=long-iso --almost-all'
+alias LL='ls -l --all --group-directories-first --human-readable --time-style=long-iso --inode --author --context'
+
+export GREP_COLORS='ms=01;32:mc=01;05;04;37;41:sl=01;37:cx=02;37:fn=01;37:ln=01;32:bn=:se=01;34'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias rgrep='rgrep --color=auto'
+
+alias fm='mc ./'
+
+CDPATH="/:$HOME:$POCKET"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# TODO: move mkdir_and_cd function to ~/.local/share/zsh/function
+alias mkdir='mkdir --verbose'
+alias mkcd='mkdir_and_cd'
+function mkdir_and_cd () {
+	if [[ -z "$1" ]]; then
+		echo 'mkcd: missing operand'
+		return 1
+	fi
+
+	mkdir -p $1 && cd $1
+}
+
+alias x='cd -'
+
+alias j='jobs -l'
+alias fga='fg %1'
+alias fgo='fg %2'
+alias fge='fg %3'
+alias fgu='fg %4'
+alias fgi='fg %5'
+
+alias mv='mv --backup=numbered --interactive --no-copy --verbose'
+alias cp='cp --backup=numbered --interactive --archive --recursive --verbose'
+alias ln='ln --backup=numbered --interactive --verbose'
+alias rm='rm --preserve-root --interactive=always --recursive --dir --verbose'
+
+alias df='df -Th --sync --total'
+
+alias chmod='chmod --preserve-root --verbose'
+alias chown='chown --preserve-root --verbose'
+alias chgrp='chgrp --preserve-root --verbose'
+
+alias wget='wget --continue'
+
+alias c='clear -x'
+alias C='clear'
+
+alias bye='exit'
+alias Q='exit'
+alias qq='exit'
+alias :q='exit'
+alias :wq='exit'
+alias wq='exit'
+# Aliases end
+
+setopt BEEP LIST_BEEP HIST_BEEP
+setopt PROMPT_SUBST PROMPT_BANG PROMPT_PERCENT
+setopt AUTO_CD CDABLE_VARS CD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_SILENT
+setopt CHECK_JOBS CHECK_RUNNING_JOBS LONG_LIST_JOBS NOTIFY NO_BG_NICE 
+setopt ALWAYS_TO_END AUTO_PARAM_KEYS AUTO_PARAM_SLASH AUTO_REMOVE_SLASH EXTENDED_GLOB NUMERIC_GLOB_SORT COMPLETE_ALIASES GLOB_COMPLETE 
+setopt APPEND_HISTORY INC_APPEND_HISTORY EXTENDED_HISTORY HIST_VERIFY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS HIST_FIND_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE SHARE_HISTORY HIST_FCNTL_LOCK
+setopt DVORAK CORRECT CORRECT_ALL CLOBBER RC_QUOTES NOMATCH BAD_PATTERN CASE_MATCH INTERACTIVE_COMMENTS MAIL_WARNING RM_STAR_WAIT 
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' format '[%d]'
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' ignore-parents parent pwd
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' select-prompt %S%p%s
+zstyle ':completion:*' substitute 1
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
+zstyle :compinstall filename '/home/jakqxs/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+# End of lines added by compinstall
+
+# NEW CONFIGURATION START
+export _ZO_DATA_DIR="$XDG_DATA_HOME/zoxide "
+_ZO_ECHO=1
+_ZO_MAXAGE=10000
+_ZO_FZF_OPTS=''
+_ZO_EXCLUDE_DIRS=''
+eval "$(zoxide init zsh)"
+# NEW CONFIGURATION END
+
+# Prompt start
+autoload -Uz promptinit && promptinit
+prompt shark white red white blue white white blue
+# prompt shark blue white red yellow white white blue
+zle -N change_prompt_style
+bindkey '^[p' change_prompt_style
+# Prompt end
+
+# TODO: move plugins to separate module and source on condition
+# TODO: move variable to appropriate section
+# ZPLUGDIR="$HOME/.local/share/zsh/plugin"
+# source $ZPLUGDIR/syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $ZPLUGDIR/autosuggestions/zsh-autosuggestions.zsh
+# source $ZPLUGDIR/history-substring-search/zsh-history-substring-search.zsh
+# REPLACE-SYNTAX-HIGHLIGHTING
+# REPLACE-AUTOSUGGESTIONS
+# REPLACE-HISTORY-SUBSTRING-SEARCH
+
+# TODO: delete old source commands
+source $HOME/.local/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.local/share/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey -M emacs '^[^P' history-substring-search-up
+bindkey -M emacs '^[^N' history-substring-search-down
+
+# black, red, green, yellow, blue, magenta, cyan, white
+# bold underline none
+typeset -A ZSH_HIGHLIGHT_STYLES
+typeset -A ZSH_HIGHLIGHT_REGEXP
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(root brackets regexp)
+
+ZSH_HIGHLIGHT_STYLES[root]='bg=red'
+
+ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bg=white'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=blue,bg=white'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=blue,bg=white'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=blue,underline'
+ZSH_HIGHLIGHT_STYLES[command]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=white,bg=blue'
+ZSH_HIGHLIGHT_STYLES[function]='fg=white,bg=blue'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=white,bg=blue'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='fg=white,bg=blue'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=white'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=white'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=green'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument-unclosed]='fg=green,underline'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=green'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument-unclosed]='fg=green,underline'
+ZSH_HIGHLIGHT_STYLES[assign]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument-unclosed]='fg=yellow,underline'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=yellow'
+
+ZSH_HIGHLIGHT_STYLES[path]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=yellow,underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=yellow,underline'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=white,bg=yellow'
+
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=blue'
+
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[named-fd]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[command-substitution-unquoted]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[command-substitution-quoted]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-unquoted]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter-quoted]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[process-substitution]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[arithmetic-expansion]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-unclosed]='fg=magenta,underline'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=magenta'
+
+ZSH_HIGHLIGHT_STYLES[comment]='fg=white,underline'
+
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=white,underline'
+ZSH_HIGHLIGHT_STYLES[default]='fg=white'
+
+ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=magenta,underline'
+ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='fg=black,bg=magenta'
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=magenta'
+
+# TODO: clean up this section later
+# TODO: finish rm highlighting
+setopt RE_MATCH_PCRE
+# ; | > >> & && ||
+# ZSH_HIGHLIGHT_REGEXP+=('^sudo .*' fg=white,bg=blue)
+ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b.*?(?=;| ;|\|| \||>| >|&| &|$)' fg=blue,bold)
+ZSH_HIGHLIGHT_REGEXP+=('^rm .*' fg=white,bg=red)
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=''
+ZSH_AUTOSUGGEST_HISTORY_IGNORE=''
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE=''
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+bindkey '^ ' autosuggest-execute
+
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=white,bg=green'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=white,bg=red'
+HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
+HISTORY_SUBSTRING_SEARCH_FUZZY=''
+HISTORY_SUBSTRING_SEARCH_PREFIXED=''
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=''
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT='10'
+
+eval "$(navi widget zsh)"
+

@@ -1,0 +1,5 @@
+NAVI_CONFIG="$XDG_CONFIG_HOME/navi/config.yaml"
+export NAVI_PATH="$XDG_DATA_HOME/navi/cheats"
+# export NAVI_FZF_OVERRIDES='--height 3'
+# export NAVI_FZF_OVERRIDES_VAR='--height 3'
+eval "$(navi widget zsh)"

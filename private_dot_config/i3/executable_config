@@ -218,13 +218,13 @@ bar {
 	# padding 2px 0
 
 	tray_output primary
-	tray_padding 5
+	tray_padding 1
 
 	mode dock
         hidden_state show
         modifier none
 
-	separator_symbol "/"
+	separator_symbol "|"
 
 	workspace_buttons yes
 	workspace_min_width 50
@@ -251,7 +251,7 @@ bar {
 exec_always --no-startup-id setxkbmap -layout us -variant dvorak
 
 # exec --no-startup-id ~/i3-animated-background/scripts/loop_pngs.sh ~/i3-animated-background/scripts/samus-aran 0.01
-exec --no-startup-id feh --bg-center ~/Pictures/moka/moka-12.png
+exec --no-startup-id feh --bg-center ~/Pictures/anime-bleach-4400-new.jpg
 # exec --no-startup-id xsetroot -solid "#ffffff"
 # set $WALLPAPER_IMAGE /home/jakqxs/Pictures/moka/moka-12.png
 # set $IMAGE /home/jakqxs/Pictures/moka/moka-8.png
@@ -260,3 +260,7 @@ exec --no-startup-id feh --bg-center ~/Pictures/moka/moka-12.png
 
 # exec --no-startup-id conky
 
+for_window [class="MC_IMAGE_VIEWER"] floating enable
+
+bindsym $SUPER+p bar hidden_state hide
+bindsym Shift+$SUPER+p bar mode toggle

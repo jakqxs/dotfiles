@@ -102,6 +102,11 @@ shell_patterns=0
         tar cf - "$Pwd" | lzop -f > "$tar.tar.lzo" && \
         echo "../$tar.tar.lzo created."
 
+9       Convert selected image to png
+        for image in %s ; do
+            image-to-png.sh $image
+	done
+
 = f \.c$ & t r
 + f \.c$ & t r & ! t t
 c       Compile and link current .c file

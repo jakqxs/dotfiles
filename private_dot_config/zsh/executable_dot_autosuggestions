@@ -1,0 +1,8 @@
+# TODO: source on condition (if -d then source)
+source $ZPLUGDIR/autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=''
+ZSH_AUTOSUGGEST_HISTORY_IGNORE=''
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE=''
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+bindkey '^ ' autosuggest-execute

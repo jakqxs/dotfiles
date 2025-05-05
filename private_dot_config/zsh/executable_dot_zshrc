@@ -1,0 +1,71 @@
+setopt PROMPT_SUBST PROMPT_BANG PROMPT_PERCENT
+setopt AUTO_CD CDABLE_VARS CD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_SILENT
+setopt ALWAYS_TO_END AUTO_PARAM_KEYS AUTO_PARAM_SLASH AUTO_REMOVE_SLASH EXTENDED_GLOB GLOB_COMPLETE NUMERIC_GLOB_SORT COMPLETE_ALIASES 
+setopt APPEND_HISTORY INC_APPEND_HISTORY EXTENDED_HISTORY HIST_VERIFY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS HIST_FIND_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE SHARE_HISTORY HIST_FCNTL_LOCK
+setopt CHECK_JOBS CHECK_RUNNING_JOBS LONG_LIST_JOBS NOTIFY NO_BG_NICE 
+setopt BEEP LIST_BEEP HIST_BEEP
+setopt DVORAK RE_MATCH_PCRE CORRECT CORRECT_ALL CLOBBER RC_QUOTES NOMATCH BAD_PATTERN CASE_MATCH INTERACTIVE_COMMENTS MAIL_WARNING RM_STAR_WAIT 
+
+typeset -U path
+path=(~/.local/bin
+	$path)
+
+typeset -U fpath
+fpath=(~/.local/share/zsh/function
+	~/.local/share/zsh/function/completion
+	~/.local/share/zsh/function/prompt
+	$fpath)
+
+source $XDG_CONFIG_HOME/zsh/.alias
+
+bindkey -e
+
+umask 0003
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' format '[%d]'
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' ignore-parents parent pwd
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' select-prompt %S%p%s
+zstyle ':completion:*' substitute 1
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
+zstyle :compinstall filename '/home/jakqxs/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+# End of lines added by compinstall
+
+# Prompt start
+autoload -Uz promptinit && promptinit
+# prompt shark white red white blue white white blue
+prompt suse
+# prompt shark blue white red yellow white white blue
+zle -N change_prompt_style
+bindkey '^[p' change_prompt_style
+# Prompt end
+
+eval $(dircolors $XDG_CONFIG_HOME/zsh/.dircolors)
+# TODO: create custom gpepcolors command
+# https://dom111.github.io/grep-colors/
+# https://askubuntu.com/questions/1042234/modifying-the-color-of-grep
+# eval $(grepcolors $XDG_CONFIG_HOME/zsh/.grepcolors)
+export GREP_COLORS='ms=01;32:mc=01;05;04;37;41:sl=01;37:cx=02;37:fn=01;37:ln=01;32:bn=:se=01;34'
+
+source $ZDOTDIR/.syntax-highlighting
+source $ZDOTDIR/.autosuggestions
+source $ZDOTDIR/.history-substring-search
+# source $ZDOTDIR/.you-should-use
+
