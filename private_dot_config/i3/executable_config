@@ -236,17 +236,20 @@ bar {
 
 	i3bar_command i3bar --transparency
 
-        # TODO: not all elements. see documentation 5.17. Colors
 	colors {
+		# background
 	        background #000000
+		# font
 		statusline #ffffff
+		# separator
                 separator #999999
 
-                focused_workspace  #4c7899 #285577 #ffffff
-                active_workspace   #333333 #5f676a #ffffff
-                inactive_workspace #333333 #222222 #888888
-                urgent_workspace   #2f343a #900000 #ffffff
-                binding_mode       #2f343a #900000 #ffffff
+                # [class]          [border] [background] [text] 
+                focused_workspace  #4c7899  #285577      #ffffff
+                active_workspace   #333333  #5f676a      #ffffff
+                inactive_workspace #333333  #222222      #888888
+                urgent_workspace   #2f343a  #900000      #ffffff
+                binding_mode       #2f343a  #900000      #ffffff
 	}
 }
 
