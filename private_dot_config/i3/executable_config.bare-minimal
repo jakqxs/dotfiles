@@ -1,8 +1,5 @@
 # i3wm config with minimal options and dependencies
 
-# TODO: think about how to modularize with include directive
-# TODO: add gaps keybindings for on, off, increase, decrease, increase small, decrease small
-
 # default_orientation horizontal|vertical|auto
 default_orientation auto
 # workspace_layout default|stacking|tabbed
@@ -44,19 +41,17 @@ font pango:solid mono 8
 set $Super Mod4
 
 # TODO: change all gaps magic numbers to variable
+# TODO: add changing gaps with small steps
 # smart_gaps on|off|inverse_outer
 smart_gaps off
 # gaps inner <gap_size>[px]
 gaps inner 0
 # gaps outer|horizontal|vertical|top|left|bottom|right <gap_size>[px]
 gaps outer 0
-# TODO: set this keybinding
 # toggle gaps on or off
 bindsym $Super+b gaps inner all toggle 15
-# TODO: set this keybinding
 # increase gaps size
 bindsym $Super+Shift+b gaps inner all plus 5
-# TODO: set this keybinding
 # decrease gaps size
 bindsym $Super+Shift+m gaps inner all minus 5
 
@@ -131,10 +126,8 @@ bindsym $Super+Shift+f floating toggle
 # TODO: set this keybinding
 # focus floating or tiling
 bindsym $Super+semicolon focus mode_toggle
-# TODO: set this keybinding
 # mouse toggle floating or tiling
 bindsym --whole-window --exclude-titlebar $Super+button1 floating toggle
-# TODO: set this keybinding
 # mouse kill floating window
 bindsym --whole-window --exclude-titlebar $Super+button2 kill
 
@@ -154,7 +147,6 @@ set $workspace_10 "10"
 # workspace navigation
 bindsym $Super+r workspace next
 bindsym $Super+c workspace prev
-# TODO: set this keybinding
 bindsym $Super+w workspace back_and_forth
 
 # workspace switch 
@@ -225,7 +217,7 @@ bar {
         # strip_workspace_name yes|no
 	strip_workspace_name no
 	# binding_mode_indicator yes|no
-        binding_mode_indicator yes
+	binding_mode_indicator yes
 
         # tray_output none|primary|<output>
 	tray_output primary
@@ -240,7 +232,7 @@ bar {
 	colors {
 	        background #000000
 		statusline #ffffff
-                separator #999999
+                separator #666666
 
                 focused_workspace  #4c7899 #285577 #ffffff
                 active_workspace   #333333 #5f676a #ffffff
@@ -255,15 +247,13 @@ bar {
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 
-# TODO: set this keybinding
 # terminal
 bindsym $Super+Return exec alacritty
 bindsym $Super+Shift+Return exec i3-sensible-terminal
 
-# TODO: set this keybinding
 # run
 bindsym $Super+z exec --no-startup-id dmenu_run
 
-# TODO: move keyboard layout config from i3wm config and delete this line
+# TODO: delete these lines
 exec_always --no-startup-id setxkbmap -layout us -variant dvorak
 
