@@ -25,7 +25,7 @@ position              = "None"
 padding               = { x = 0, y = 0 }
 dynamic_padding       = true
 decorations           = "Full"
-opacity               = 0.60
+opacity               = 0.80
 blur                  = true
 startup_mode          = "Windowed"
 title                 = "Alacritty"

@@ -1,0 +1,56 @@
+# shell
+setopt RC_QUOTES REMATCH_PCRE FUNCTION_ARGZERO MAIL_WARNING RM_STAR_WAIT INTERACTIVE_COMMENTS
+
+# beep
+setopt NO_BEEP NO_LIST_BEEP NO_HIST_BEEP
+
+# redirection
+setopt NO_CLOBBER MULTIOS NO_SH_NULLCMD
+
+# glob
+setopt EXTENDED_GLOB NOMATCH NO_GLOB_DOTS BRACE_CCL CASE_GLOB BAD_PATTERN NUMERIC_GLOB_SORT RC_EXPAND_PARAM
+
+# complete
+# TODO: after some time decide what better MENU_COMPLETE or AUTO_MENU
+# 	AUTO_MENU - gives more control and just calm
+# 	MENU_COMPLETE - aggressive and fast and may be unconvinient sometimes
+setopt MENU_COMPLETE # AUTO_MENU
+# TODO: after set _prefix completer, verify it with option. it should be turned on for _prefix to work
+setopt COMPLETE_IN_WORD ALWAYS_TO_END AUTO_REMOVE_SLASH AUTO_PARAM_SLASH AUTO_PARAM_KEYS
+setopt AUTO_LIST LIST_AMBIGUOUS LIST_TYPES LIST_ROWS_FIRST GLOB_COMPLETE NO_COMPLETE_ALIASES
+
+# correct
+setopt DVORAK CORRECT CORRECT_ALL
+
+# prompt
+# TODO: experiment with these three options and decide which to use
+setopt NO_PROMPT_SUBST NO_PROMPT_BANG NO_PROMPT_PERCENT
+setopt PROMPT_CR TRANSIENT_RPROMPT ALWAYS_LAST_PROMPT
+
+# loop
+setopt SHORT_LOOPS SHORT_REPEAT
+
+# history
+# TODO: EXTENDED_HISTORY doesn't work
+setopt SHARE_HISTORY # EXTENDED_HISTORY
+setopt HIST_VERIFY NO_HIST_ALLOW_CLOBBER BANG_HIST HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS HIST_NO_STORE HIST_FCNTL_LOCK
+
+# job
+setopt NOTIFY CHECK_JOBS CHECK_RUNNING_JOBS BG_NICE LONG_LIST_JOBS
+
+# cd
+setopt AUTO_CD CD_SILENT CDABLE_VARS
+# pushd
+setopt AUTO_PUSHD NO_PUSHD_SILENT PUSHD_IGNORE_DUPS
+
+bindkey -e
+umask 0003
+
+source $ZDOTDIR/.alias
+
+autoload -Uz promptinit && promptinit
+prompt redhat
+zle -N change_prompt_style
+bindkey '^[p' change_prompt_style
+

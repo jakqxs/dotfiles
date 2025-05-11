@@ -1,27 +1,3 @@
-setopt PROMPT_SUBST PROMPT_BANG PROMPT_PERCENT
-setopt AUTO_CD CDABLE_VARS CD_SILENT PUSHD_TO_HOME PUSHD_IGNORE_DUPS PUSHD_SILENT
-setopt ALWAYS_TO_END AUTO_PARAM_KEYS AUTO_PARAM_SLASH AUTO_REMOVE_SLASH EXTENDED_GLOB GLOB_COMPLETE NUMERIC_GLOB_SORT COMPLETE_ALIASES 
-setopt APPEND_HISTORY INC_APPEND_HISTORY EXTENDED_HISTORY HIST_VERIFY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS HIST_FIND_NO_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE SHARE_HISTORY HIST_FCNTL_LOCK
-setopt CHECK_JOBS CHECK_RUNNING_JOBS LONG_LIST_JOBS NOTIFY NO_BG_NICE 
-setopt BEEP LIST_BEEP HIST_BEEP
-setopt DVORAK RE_MATCH_PCRE CORRECT CORRECT_ALL CLOBBER RC_QUOTES NOMATCH BAD_PATTERN CASE_MATCH INTERACTIVE_COMMENTS MAIL_WARNING RM_STAR_WAIT 
-
-typeset -U path
-path=(~/.local/bin
-	$path)
-
-typeset -U fpath
-fpath=(~/.local/share/zsh/function
-	~/.local/share/zsh/function/completion
-	~/.local/share/zsh/function/prompt
-	$fpath)
-
-source $XDG_CONFIG_HOME/zsh/.alias
-
-bindkey -e
-
-umask 0003
-
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' completions 1
@@ -47,15 +23,6 @@ zstyle :compinstall filename '/home/jakqxs/.config/zsh/.zshrc'
 autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 # End of lines added by compinstall
-
-# Prompt start
-autoload -Uz promptinit && promptinit
-# prompt shark white red white blue white white blue
-prompt suse
-# prompt shark blue white red yellow white white blue
-zle -N change_prompt_style
-bindkey '^[p' change_prompt_style
-# Prompt end
 
 eval $(dircolors $XDG_CONFIG_HOME/zsh/.dircolors)
 # TODO: create custom gpepcolors command

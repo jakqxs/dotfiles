@@ -1,0 +1,86 @@
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_DIRS=
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_DATA_DIRS=
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_STATE_HOME=$HOME/.local/state
+
+export XDG_DESKTOP_DIR=$HOME/Desktop
+export XDG_DOWNLOAD_DIR=$HOME/Downloads
+export XDG_TEMPLATES_DIR=$HOME/Templates
+export XDG_PUBLICSHARE_DIR=$HOME/Public
+export XDG_DOCUMENTS_DIR=$HOME/Documents
+export XDG_MUSIC_DIR=$HOME/Music
+export XDG_PICTURES_DIR=$HOME/Pictures
+export XDG_VIDEOS_DIR=$HOME/Videos
+
+export TMPDIR=/tmp
+
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZPLUGDIR=$XDG_DATA_HOME/zsh/plugin
+export ZFUNCDIR=$XDG_DATA_HOME/zsh/function
+export HISTFILE=$XDG_STATE_HOME/zsh/history
+export HISTSIZE=777
+export SAVEHIST=777
+
+export LANG=en_US.UTF-8
+export LANGUAGE=uk_UA:en_US
+export LC_CTYPE=en_US.UTF-8
+export LC_NUMERIC=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+export LC_MONETARY=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
+export LC_PAPER=en_US.UTF-8
+export LC_NAME=en_US.UTF-8
+export LC_ADDRESS=en_US.UTF-8
+export LC_TELEPHONE=en_US.UTF-8
+export LC_MEASUREMENT=en_US.UTF-8
+export LC_IDENTIFICATION=en_US.UTF-8
+export LC_ALL=
+
+export TZ=Europe/Kyiv
+
+typeset -gxU PATH path
+path=( $path $HOME/.local/bin )
+
+typeset -gxU FPATH fpath
+fpath=( $fpath $ZFUNCDIR/* )
+
+typeset -gxU CDPATH cdpath
+cdpath=( / $HOME )
+export DIRSTACKSIZE=7
+
+# TODO: adjust WORDCHARS variable
+# old (checked)
+# export WORDCHARS='*?~&;!#%^()[]<>'
+# new (unchecked)
+# export WORDCHARS=')]>'
+#
+# TODO: develop rules for this variable
+# erase filenames togather with dashes and dots
+# erase commas in brace expanions and comma separated arguments
+# erase glob symbols: *
+# erase tildas at the end of filenames and in the beginning but not erase prev argum
+# erase pipe symbol as if it is word
+export WORDCHARS='-.,?*~&|'
+# export GLOBIGNORE=
+
+export EDITOR=$(which nvim)
+export VISUAL=$EDITOR
+export SUDO_EDITOR=$EDITOR
+export FCEDIT=$EDITOR
+
+export PAGER=$(which less)
+export BROWSER=$(which firefox)
+export MAIL=/var/spool/mail/$LOGNAME
+export MAILPATH=$MAIL
+export MAILCHECK=60
+export FILE_MANAGER=mc
+
+export NULLCMD=$(which cat)
+export READNULLCMD=$PAGER
+
+# export TMOUT=
+

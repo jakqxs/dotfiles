@@ -1,0 +1,189 @@
+# /ect/zshenv ~/.zshenv /etc/zprofile OPTIONS
+# RCS GLOBALRCS LOGIN INTERACTIVE
+# zstyle ':completion:*' insert-tab true
+# zstyle ':completion:*:*:cd:*' ignored-patterns '(*/|)(CVS|SCCS)'
+# zstyle ':completion::*:(cvs-add|less|rm|vi):*' ignore-line true
+# zstyle ':completion:*' ignore-parents parent pwd
+
+
+
+
+
+
+
+
+
+
+
+
+# TO REMEMBER
+#
+# zsh runs all commands but last one in a subshell
+# -n or noexec - this prevents commands from being run and just check the syntax. for debugging
+# -v or verbose - print command line exactly, before any expansion. for debugging
+# -u or nounset - thow an error if variable is unset. for debugging
+# input="$(<input.ini)" <--- shortcut fot input="$(cat input.ini)"
+# ^*.java - match anything that don't match java filese
+# pat1^pat2 - match anything that has pat1 at the beginning and do not match pat2 (picture^.png)
+# printe -l /usr/^*bin/A* - match all the files starting in A but not in bin or sbin directories 
+# m*~*.txt - pat1~pat2 and pat1^pat2 are very similar but ^ syntax matches pat1 at the beginning and
+#            pat2 at the end whlie ~ syntax trying to match both pat1 and pat2 against full string
+#            making it more univelsal. all to the right side of ~ treated as pattern even slashes /
+#            so it is possible to match through directories
+# # - match a char or a group zero or more times A#readme (AB)#readme [ab]#readme
+# ## - match atleast once and shorthand for writing AA#readme ; A##readme
+# (files/*)# do not work because shell doesn't apply pattern correctly when it spans multiple
+# directories. But it works when there is only on slash and it appears right before closing parenthesis.
+# Therefore use (file*/)#.txt to match directory tree includin current directory or (file*/)##.txt to
+# exclude current directory. **/ is simple shorthand for (*/)#
+#
+# r - is the same as !!
+# alt + / - complete word from history
+#
+# /home/pws/zsh/4.0.7/Src; cd 4.0.7 4.1.1
+# ~jakqxs ~variable ~+ ~- ~+2 ~2 ~-0
+# press alt+x to execute zle bultin commands on the fly
+# alt+q hide current command, execute another and return hidden command
+# man zshoptions
+# vared PS1 - the easy way to customize prompt
+# sched - command to remember in terminal
+# whence - command under the hood of which and type commands
+#
+# fg %num can be just %num ; Shell can understand that this is jobs syntax
+# =zsh - is shorthand for `which zsh`
+# $=var - to explicitly split variable like: one 'two three' four. For arrays $=arr
+# BEFORE${^arr}AFTER - ^ can be used to turn on RC_EXPAND_PARAM option for one time. ^^ to turn option off
+# (( 3 * 4 )) (( var=3*4)) and $(( 3 * 4 )) are different. $(()) can appear in places like
+# a variable expansions.
+# echo ${arr[ 3 * i]} - array's subscript can be any mathematical expression
+#
+# navi
+# zle -al
+#
+# --- HISTORY START ---------------------
+#
+# General syntax: !!:word:modifier  !!:2:t
+#
+# !! is the same as !-1, and so forth !-2
+# !echo - execute nearest echo command
+# !?text - search for a line containing the text
+#
+# HISTORY WORDS
+#
+# !!:number (!!:0 !!:1)
+# !!:range (!!:1-3 !!:1-$)
+# !!:last argument (!!:$)
+# !!:all arguments excluding command name (!!:*)
+# You can shorten !! to just ! if it followed by one of these forms (!:0 !:* !:$ etc.)
+# In zsh a single ! refers to a previous command substitution, if you had previous
+# history substitution on the line: echo !-5:* !:* ; in this case !:* refers to !-5
+#
+# HISTORY MODIFIERS
+#
+# !:2:h - left only head
+# !:2:t - left only tail
+# !:2:r - remove suffix (.jpg .png .java etc)
+# !:2:r.suffix - replace suffix (r.png r.txt etc)
+# !:2:t:t:h:r - combine modifiers
+# !:2:s/old/new/ - substitute string
+# ^old^new^ - shorthand for s:/old/new/
+# ^old^new^:s/again_old/again_new/ - several substitution is possible
+# !:2:gs/old/new/ - global substitution (unlike sed 'g' comes at the beginning)
+# --- HISTORY END -----------------------
+#
+# --- VARIABLES ---
+# NULLCMD - default is cat. for null redirections such as > memo.txt
+# READNULLCMD - default is less. for null redirections such as < memo.txt
+# GLOBIGNORE=pattern1:pattern2 - var to ignore globbing matches. dof files must be match explicitly by :.*
+#
+# complex variable expansions
+# ${VAR:-default} - default value if VAR is unset
+# ${VAR:+default} - default value if VAR is set
+# ${VAR#glob_pat} and ${VAR##glob_pat} - remove pat from the beginning. # - lazy, ## - greedy
+# ${VAR%glob_pat} and ${VAR%%glob_pat} - remove pat from the ent. % - lazy, %% - greedy
+# analogy to remember # and %: #1 and 100%. (# also a comment)
+# ${VAR/pat/string} ${VAR//pat/string} - sed substitution. / - first one // - global. ${PATH//:/ }
+# $array[3,5] $string[3,5] - ranges. works with strings also to get a substring
+# ${${file##*/}%.*} - nested expansions is possible (this one gives only filene without extension}
+# files=( /lib/lib* ); echo ${files[@]##*/} - pattern operators applied to array act on each element 
+# ${arr:#pattern} - discard all values from the arr that match pattern
+# ${(M)arr:#pattern} - (M) exp flag reverses the operation so this prints all elem matched the pattern
+# expansion flags
+# echo ${(ops:\n:)"$(cut -d: -f5 /etc/passwd)"} - (ops is expansion flags full list is on page 297)
+# --- VARIABLES END -------------------------------------------------------------------------------------
+#
+# --- GLOBBING ----
+# grouping alternatives echo d*.(out|txt)
+# **/filepath - match any number of directories including none and current directory
+# modifiers
+# file=~/.config/zsh/.zshrc; echo $file:t
+# ~/.z*(:t) - modifiers with globbing. neet to be in parenthesis
+# man zshmisc - a lot of reading on miscelanious zsh features (optional)
+# man zshexpn - a lot of reading on zsh expantions (optional)
+# man zshcontrib - contributed widgets(functions) to zsh
+# man zshzle - manual for zsh line editor
+# glob qualifiers
+# see man zshexpn for full list of qualifiers
+# colon modifiers such as :r :t :r can be used with glob qualifiers but must be surrounded by () and come
+# after all glob qualifiers: echo ~/*.txt(On:t:r)
+# Any set of glob qualifiers applies only to the file that results from applying all glob expansions, not
+# to the directories located erlier in the path. Src/^*.o(.) - ^ negation doesn't applies to qualifer and
+# qualifier doesn't applies to directory part. You can, however, negate the qualifier themselves *.o(^.)
+# ^ - works as a toggle *.txt(r^w)
+# *(/,*) - you can group qualifiers with comma. everything that is directory or executable
+# . - match regular file (no directory, symlink or other special files)
+# --- GLOBBING END -------------------------------------------------------------------
+#
+# Prompt
+# PS2=%_> - %_ is the name of command being executed
+# PS4='+%N:%i:%_>' - %N name of the script, %i line number, %_ command being executed
+# RPS2 - continuation command prompt on the right side
+# RPS2='%^' - %^ show executed commands in reverse order
+# SPROMPT - used to when offering to correct spelling. Default is 'Correct %R to %r [nyae?]'
+# TIMEFMT - output frome 'time' built in
+# WATCHFMT and LOGCHECK - info on logins and logouts (more on the page 159)
+# MAIL MAILPATH MAILCHECK - check for a mail (more on the page 162)
+# conditional in prompts
+# %(?.zero.non-zero) - ? compares exit status of prev command with zero or any other
+# 		       number if given after % or ( chars. %1(?.non-zero.zero)
+# %(t.Ding!.%D(%L:%M) - t compares nuber giver or zero against the minutes of current hour
+# %(#.#.%%) - # compares user id
+# %(L..%L) - L compares current shell level
+#
+# another way to put variables in prompt is to tes psvar=(one two three four) array
+# and refer to variable as %1v %2v and so on. These variables are not dynamic and never change.
+# the option PROMPT_PERCENT must be turned on. THIS IS OPTIONAL
+#
+# --- LOOPS START ------------------
+# pipe into loop, use IFS, declare variable for read command (IFS changed only for this command)
+# ps /etc/passwd | while IFS=: read user pw uid gid name home shell; do
+# echo $user $shell
+# done
+#
+# input redirect into loop
+# whlie true; do
+# somthing
+# done < file.txt
+# --- LOOPS END --------------------
+#
+#
+#
+# It's better not to put command substitution to PS vars. instead put them in precmd() function
+# precmd() { echo 'about to print a prompt' }
+#
+# This function runs just after precmd but only if timeout in variable $PERIOD elapsed.
+# periodic() { somthing }
+#
+# This function executs just after pressing Enter but before the command actually executes.
+# It recieves the argumet $1 that is command line itself
+# preexec() { somthing }
+#
+# This function executes each time when changing directory happens
+# chpwd() { somthing }
+#
+# autoload -- ~/.zfunc/[^_]*(:t) - autoload all funcion in .zfunc (not beginning with _)
+#
+# bindkey -L - all keybinding that are set alredy
+# keybindings
+# magic-space - command to expand all expansions on the line
+# bindkey ' ' magic-space

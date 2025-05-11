@@ -6,33 +6,7 @@ alias vrc="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"
 
 alias v='nvim'
 
-alias fm='mc ./'
-
-alias j='jobs -l'
-alias fga='fg %1'
-alias fgo='fg %2'
-alias fge='fg %3'
-alias fgu='fg %4'
-alias fgi='fg %5'
-
-alias mv='mv --backup=numbered --interactive --no-copy --verbose'
-alias cp='cp --backup=numbered --interactive --archive --recursive --verbose'
-alias ln='ln --backup=numbered --interactive --verbose'
-alias rm='rm --preserve-root --interactive=always --recursive --dir --verbose'
-
-alias df='df -Th --sync --total'
-
-alias chmod='chmod --preserve-root --verbose'
-alias chown='chown --preserve-root --verbose'
-alias chgrp='chgrp --preserve-root --verbose'
-
-# TODO: add other grep variations (https://www.cyberciti.biz/tips/howto-see-grep-command-output-in-colours.html)
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias rgrep='rgrep --color=auto'
-
-alias wget='wget --continue'
+alias fm="$FILE_MANAGER ./"
 
 alias c='clear -x'
 alias C='clear'
@@ -47,16 +21,10 @@ alias wq='exit'
 alias home="cd $HOME"
 alias h='home'
 
-alias tar='tar --preserve-permissions --sort=name --verbose'
-alias gzip='gzip --name --best --synchronous --verbose'
-alias bzip2='bzip2 --best --verbose'
-alias xz='xz -9 --verbose'
-alias zip='zip -9 --temp-path /tmp --verbose'
-
 alias ff='find . -type f -iname'
 alias fd='find . -type d -iname'
 
-alias ls='ls --color=auto --classify --ignore-backups'
+alias ls='ls --color=auto --sort=version --classify --ignore-backups'
 
 alias l='ls --group-directories-first'
 alias la='ls --group-directories-first --almost-all'
@@ -84,6 +52,38 @@ alias llX='ls -l -X --group-directories-first --human-readable --time-style=long
 alias llaX='ls -l -X --group-directories-first --human-readable --time-style=long-iso --almost-all'
 alias LL='ls -l --all --group-directories-first --human-readable --time-style=long-iso --inode --author --context'
 
+alias mv='mv --backup=numbered --interactive --no-copy --verbose'
+alias cp='cp --backup=numbered --interactive --archive --recursive --verbose'
+alias ln='ln --backup=numbered --interactive --verbose'
+alias rm='rm --preserve-root --interactive=always --recursive --dir --verbose'
+
+alias df='df -Th --sync --total'
+
+alias chmod='chmod --preserve-root --verbose'
+alias chown='chown --preserve-root --verbose'
+alias chgrp='chgrp --preserve-root --verbose'
+
+# TODO: add other grep variations (https://www.cyberciti.biz/tips/howto-see-grep-command-output-in-colours.html)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias rgrep='rgrep --color=auto'
+
+alias wget='wget --continue'
+
+alias tar='tar --preserve-permissions --sort=name --verbose'
+alias gzip='gzip --name --best --synchronous --verbose'
+alias bzip2='bzip2 --best --verbose'
+alias xz='xz -9 --verbose'
+alias zip='zip -9 --temp-path /tmp --verbose'
+
+alias j='jobs -l'
+alias fga='fg %1'
+alias fgo='fg %2'
+alias fge='fg %3'
+alias fgu='fg %4'
+alias fgi='fg %5'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -96,6 +96,7 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 # TODO: move mkdir_and_cd function to ~/.local/share/zsh/function
+# TODO: create rmcd function
 alias mkdir='mkdir --verbose'
 alias mkcd='mkdir_and_cd'
 function mkdir_and_cd () {
@@ -109,5 +110,8 @@ function mkdir_and_cd () {
 
 alias x='cd -'
 
-alias pckt="$POCKET"
+alias pargs="printf '[%s]\n'"
+
+# TODO: move this alias to the function
+alias todo:="grep --recursive --no-ignore-case --no-messages --line-number --colour=always --after-context=5 --group-separator='' 'TODO:' $XDG_CONFIG_HOME | $PAGER --RAW-CONTROL-CHARS"
 
